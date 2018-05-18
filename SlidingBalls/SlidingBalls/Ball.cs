@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SlidingBalls
 {
+    [Serializable]
     public class Ball
     {
         public Point Centar { get; set; }

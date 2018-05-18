@@ -4,9 +4,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SlidingBalls
 {
+    [Serializable]
     public class BallDoc
     {
         public List<Ball> balls { get; set; }
@@ -35,6 +37,7 @@ namespace SlidingBalls
                 Point p = new Point(movingBall.Centar.X + (int)(10 * Math.Cos(movingAngle)), movingBall.Centar.Y + (int)(10 * Math.Sin(movingAngle)));
                 movingBall.Move(p);
                 if ((p.X + Ball.Radius < 0 || p.X - Ball.Radius > Width) || (p.Y + Ball.Radius < 0 || p.Y - Ball.Radius > Height)) {
+                    balls.Remove(movingBall);
                     movingBall = null;
                 }
             }
@@ -60,6 +63,13 @@ namespace SlidingBalls
                     movingAngle = random.Next(0, 360);
                 }
             }
+        }
+
+        public int getRedBalls()
+        {
+            int kolku = 0;
+            foreach (Ball b in balls) if (b.Color == Color.Red) kolku++;
+            return kolku;
         }
     }
 }
