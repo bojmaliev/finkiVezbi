@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "IndexAjax";
+}
+
+<h2>IndexAjax View Albums</h2>
+
+<table id="albumsTable">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Image</td>
+            <td>Title</td>
+        </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+
+        $(function () {
+            $("#albumsTable").DataTable({
+                ajax: {
+                    url: "/api/Albums1",
+                    dataSrc: ""
+                
+                },
+                columns: [
+                    {
+                         data: "Name"
+                    },
+                    {
+                        data: "Price"
+                    },
+                    {
+                        data: "Title"
+                    }, {
+                        data: "AlbumArtUrl",
+                        render: function (settings, type, album) {
+                            return "<img src='"+album.AlbumArtUrl+"' style='max-width:200px'>";
+                        }
+                    }
+                ]
+            });
+        });
+
+    </script>
+    }
