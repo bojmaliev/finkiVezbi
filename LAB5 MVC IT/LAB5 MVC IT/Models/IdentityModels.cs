@@ -29,5 +29,7 @@ namespace LAB5_MVC_IT.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<LAB5_MVC_IT.Models.FriendModel> FriendModels { get; set; }
     }
 }
