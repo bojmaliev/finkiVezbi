@@ -29,9 +29,15 @@
             @Html.DisplayFor(modelItem => item.MestoZiveenje)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @if (User.IsInRole("Administrator") || User.IsInRole("Manager"))
+    {
+
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+}
+
         </td>
     </tr>
 }

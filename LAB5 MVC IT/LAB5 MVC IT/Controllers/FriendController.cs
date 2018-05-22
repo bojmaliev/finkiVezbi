@@ -15,12 +15,14 @@ namespace LAB5_MVC_IT.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Friend
+        [Authorize(Roles = "User,Manager,Administrator")]
         public ActionResult Index()
         {
             return View(db.FriendModels.ToList());
         }
 
         // GET: Friend/Details/5
+        [Authorize(Roles = "User,Manager,Administrator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace LAB5_MVC_IT.Controllers
         }
 
         // GET: Friend/Create
+        [Authorize(Roles = "User,Manager,Administrator")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +62,7 @@ namespace LAB5_MVC_IT.Controllers
         }
 
         // GET: Friend/Edit/5
+        [Authorize(Roles = "Manager,Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +94,7 @@ namespace LAB5_MVC_IT.Controllers
         }
 
         // GET: Friend/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

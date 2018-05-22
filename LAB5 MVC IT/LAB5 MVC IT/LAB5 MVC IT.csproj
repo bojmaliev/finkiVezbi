@@ -212,6 +212,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddRoleModel.cs" />
     <Compile Include="Models\FriendModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -280,6 +281,7 @@
     <Content Include="Views\Friend\Details.cshtml" />
     <Content Include="Views\Friend\Edit.cshtml" />
     <Content Include="Views\Friend\Index.cshtml" />
+    <Content Include="Views\Account\AddRoleToUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

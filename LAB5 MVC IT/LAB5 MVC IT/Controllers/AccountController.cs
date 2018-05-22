@@ -22,7 +22,7 @@ namespace LAB5_MVC_IT.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,11 +34,12 @@ namespace LAB5_MVC_IT.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
+
 
         public ApplicationUserManager UserManager
         {
@@ -59,6 +60,27 @@ namespace LAB5_MVC_IT.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
+        }
+
+        public ActionResult AddRoleToUser() {
+            AddRoleModel arm = new AddRoleModel();
+            arm.Roles = new System.Collections.Generic.List<string>();
+            arm.Roles.Add("Administrator");
+            arm.Roles.Add("Manager");
+            arm.Roles.Add("User");
+            return View(arm);
+        }
+        [HttpPost]
+        public ActionResult AddRoleToUser(AddRoleModel model) {
+            try {
+                var user = UserManager.FindByEmail(model.Email);
+                UserManager.AddToRole(user.Id, model.SelectedRole);
+                return RedirectToAction("Index", "Friend");
+                
+            }
+            catch (Exception) {
+                return HttpNotFound();
+            }
         }
 
         //
